@@ -31,7 +31,7 @@ function getToken(req, res) {
         }
         const user = yield getUser(username, password);
         if (!user) {
-            res.status(status_codes_1.HTTP_UNAUTHORIZED).json({
+            return res.status(status_codes_1.HTTP_UNAUTHORIZED).json({
                 details: "incorrect credentials"
             });
         }

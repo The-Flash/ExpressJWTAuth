@@ -20,7 +20,7 @@ export async function getToken(req: Request, res: Response) {
     }
     const user = await getUser(username, password);
     if (!user) {
-        res.status(HTTP_UNAUTHORIZED).json({
+        return res.status(HTTP_UNAUTHORIZED).json({
             details: "incorrect credentials"
         })
     }

@@ -2,6 +2,7 @@ import { JwtPayload } from "jsonwebtoken";
 
 export const extractPayload = (user: object, fields: any[]) : object => {
     const payload = {};
+    if(!user) return payload;
     fields.forEach((key) => {
         payload[key] = user[key];
     });
