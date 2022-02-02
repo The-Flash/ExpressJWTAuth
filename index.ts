@@ -1,7 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
 
-import jwtAuth, { JWTStrategy, authenticate, getToken, refreshToken } from "./src";
+import { jwtAuth, JWTStrategy, authenticate, getToken, refreshToken } from "./src";
 
 const app = express();
 
@@ -50,7 +50,6 @@ app.post("/refresh", refreshToken);
 app.get("/protected", authenticate, (req: Request, res: Response) => {
     res.json({
         details: "I am protected",
-        ...req.user
     })
 })
 

@@ -1,6 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import { getToken, refreshToken, authenticate } from "./controllers";
 
+export {
+    getToken,
+    refreshToken,
+    authenticate
+};
+
 export class JWTStrategy<T> {
     constructor(
         public options: JWTStrategyOptions<T>
@@ -9,7 +15,7 @@ export class JWTStrategy<T> {
     }
 }
 
-export default function <T>(options: JWTOptions<T>) {
+export function jwtAuth<T>(options: JWTOptions<T>) {
     if (!options.algorithm) {
         options["algorithm"] = "HS256";
     }
@@ -30,9 +36,3 @@ export default function <T>(options: JWTOptions<T>) {
         next();
     }
 }
-
-export {
-    getToken,
-    refreshToken,
-    authenticate
-};

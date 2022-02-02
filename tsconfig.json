@@ -1,15 +1,19 @@
 {
     "include": [
-        "./index.ts",
         "./src/**/*"
     ],
     "compilerOptions": {
         // "lib": ["ES2015"],
+        "module": "commonjs",
+        "target": "es2015",
+        "declaration": true,
+        "outDir": "./dist",
         "typeRoots": [
             "./@types",
             "node_modules/@types",
             // "node_modules/@types"
         ],
+
         "esModuleInterop": true,
     },
     
