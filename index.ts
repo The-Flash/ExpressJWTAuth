@@ -1,8 +1,7 @@
 import express from "express";
 import { Request, Response } from "express";
 
-import jwtAuth, { JWTStrategy } from "./src";
-import { authenticate, getToken, refreshToken } from "./src/controllers";
+import jwtAuth, { JWTStrategy, authenticate, getToken, refreshToken } from "./src";
 
 const app = express();
 

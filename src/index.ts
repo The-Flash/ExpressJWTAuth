@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { getToken, refreshToken, authenticate } from "./controllers";
 
 export class JWTStrategy<T> {
     constructor(
@@ -9,19 +10,19 @@ export class JWTStrategy<T> {
 }
 
 export default function <T>(options: JWTOptions<T>) {
-    if(!options.algorithm) {
+    if (!options.algorithm) {
         options["algorithm"] = "HS256";
     }
-    if(!options.accessTokenLifetime) {
+    if (!options.accessTokenLifetime) {
         options["accessTokenLifetime"] = "";
     }
-    if(!options.refreshTokenLifetime) {
+    if (!options.refreshTokenLifetime) {
         options["refreshTokenLifetime"] = "";
     }
-    if(!options.signingKey) {
+    if (!options.signingKey) {
         options["signingKey"] = "";
     }
-    if(!options.rotateRefresh) {
+    if (!options.rotateRefresh) {
         options["rotateRefresh"] = true;
     }
     return function (req: Request, res: Response, next: NextFunction) {
@@ -29,3 +30,9 @@ export default function <T>(options: JWTOptions<T>) {
         next();
     }
 }
+
+export {
+    getToken,
+    refreshToken,
+    authenticate
+};
