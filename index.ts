@@ -14,7 +14,7 @@ app.use(jwtAuth({
     signingKey: "some big secret here",
     refreshTokenLifetime: "1209600s",
     accessTokenLifetime: "300s",
-    strategy: new JWTStrategy<object, number>({
+    strategy: new JWTStrategy<object>({
         identifier: "id",
         payloadFields: ["nickname"],
         getUser: async (username: string, password: string) => {
@@ -25,7 +25,7 @@ app.use(jwtAuth({
                 nickname: "Flash"
             };
         },
-        getUserById: async (id: number) => {
+        getUserById: async (id: string) => {
             return {
                 username: "Augustine",
                 age: 100,

@@ -1,14 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 
-export class JWTStrategy<T, I> {
+export class JWTStrategy<T> {
     constructor(
-        public options: JWTStrategyOptions<T, I>
+        public options: JWTStrategyOptions<T>
     ) {
 
     }
 }
 
-export default function <T, I>(options: JWTOptions<T, I>) {
+export default function <T>(options: JWTOptions<T>) {
     if(!options.algorithm) {
         options["algorithm"] = "HS256";
     }

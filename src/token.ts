@@ -37,7 +37,7 @@ export class TokenGenerator {
         }
     }
 
-    static generateToken<T, I>(payload: object, tokenType: TokenBase, options: JWTOptions<T, I>): string {
+    static generateToken<T>(payload: object, tokenType: TokenBase, options: JWTOptions<T>): string {
         payload = {
             ...payload,
             type: tokenType.type

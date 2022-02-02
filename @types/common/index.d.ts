@@ -3,24 +3,24 @@ import jwt from "jsonwebtoken";
 
 export { };
 declare global {
-    interface JWTOptions<T, I> {
+    interface JWTOptions<T> {
         algorithm?: jwt.Algorithm;
         signingKey?: string;
         refreshTokenLifetime?: string | number;
         accessTokenLifetime?: string | number;
         rotateRefresh?: boolean;
-        strategy: JWTStrategy<T, I>
+        strategy: JWTStrategy<T>
     }
 
-    interface JWTStrategyOptions<T, I> {
-        identifier: string;
+    interface JWTStrategyOptions<T> {
+        identifier: string | number;
         payloadFields: string[];
         getUser: (username: string, password: string) => Promise<T>;
-        getUserById: (id: I) => Promise<T>;
+        getUserById: (id: string | number) => Promise<T>;
     }
 
-    interface JWTAuthRequest<T, I> extends Request {
-        jwtAuthOptions?: JWTOptions<T, I>;
+    interface JWTAuthRequest<T> extends Request {
+        jwtAuthOptions?: JWTOptions<T>;
         user?: T,
         body: any;
     }
