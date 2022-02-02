@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTokenFromString = exports.extractPayload = void 0;
 const extractPayload = (user, fields) => {
     const payload = {};
+    if (!user)
+        return payload;
     fields.forEach((key) => {
         payload[key] = user[key];
     });
