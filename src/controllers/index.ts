@@ -5,7 +5,7 @@ import { extractPayload, getTokenFromString } from "../utils";
 
 export async function getToken(req: Request, res: Response) {
     const { strategy } = req.jwtAuthOptions;
-    const { identifier, getUser, payloadFields } = strategy.options;
+    const { identifier, getUser, payloadFields, responseExtras } = strategy.options;
     const username: string = req.body;
     const password: string = req.body;
     const user = await getUser(username, password);
@@ -23,7 +23,12 @@ export async function getToken(req: Request, res: Response) {
         "refresh": refreshToken
     }
 
-    return res.json(response);
+    if(responseExtras) {
+        const extras = await responseExtras(user[identifier]);
+        response = {...response, ...extras};
+    }
+    
+    return res.status(HTTP_OK).json(response);
 }
 
 export async function refreshToken(req: Request, res: Response) {
@@ -34,7 +39,7 @@ export async function refreshToken(req: Request, res: Response) {
         });
     }
     const { strategy, signingKey } = req.jwtAuthOptions;
-    const { identifier, getUserById, payloadFields } = strategy.options;
+    const { identifier, getUserById, payloadFields, responseExtras } = strategy.options;
     const fields = [identifier, ...payloadFields];
     const payloadFromJWT = TokenGenerator.verify(refresh, signingKey, new RefreshToken());
     if(!payloadFromJWT) {
@@ -59,6 +64,10 @@ export async function refreshToken(req: Request, res: Response) {
             ...response,
             "refresh": refreshToken
         }
+    }
+    if(responseExtras) {
+        const extras = await responseExtras(user[identifier]);
+        response = {...response, ...extras};
     }
     return res.status(HTTP_OK).json(response);
 }

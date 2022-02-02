@@ -31,6 +31,11 @@ app.use(jwtAuth({
                 age: 100,
                 nickname: "Flash"
             };
+        },
+        responseExtras: async (id: string) => {
+            return {
+                lastname: "Augustine"
+            }
         }
     }),
 }));
@@ -45,7 +50,8 @@ app.post("/token", getToken);
 app.post("/refresh", refreshToken);
 app.get("/protected", authenticate, (req: Request, res: Response) => {
     res.json({
-        details: "I am protected"
+        details: "I am protected",
+        ...req.user
     })
 })
 

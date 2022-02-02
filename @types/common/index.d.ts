@@ -17,6 +17,7 @@ declare global {
         payloadFields: string[];
         getUser: (username: string, password: string) => Promise<T>;
         getUserById: (id: string | number) => Promise<T>;
+        responseExtras?: (id: string | number) => Promise<object>
     }
 
     interface JWTAuthRequest<T> extends Request {
