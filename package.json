@@ -1,0 +1,19 @@
+{
+  "name": "express-jwt-auth",
+  "version": "1.0.0",
+  "description": "JWT Authentication in ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch *.ts --exec ts-node index.ts"
+  },
+  "author": "Augustine Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

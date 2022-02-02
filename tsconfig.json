@@ -1,0 +1,16 @@
+{
+    "include": [
+        "./index.ts",
+        "./src/**/*"
+    ],
+    "compilerOptions": {
+        // "lib": ["ES2015"],
+        "typeRoots": [
+            "./@types",
+            "node_modules/@types",
+            // "node_modules/@types"
+        ],
+        "esModuleInterop": true,
+    },
+    
+}
